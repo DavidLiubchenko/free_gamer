@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from "react";
+// eslint-disable-next-line
+import appStyles from "./App.css"
+
+import Mainbackground from "./UI/MainContent/BackGround/MainBackGround.jsx";
+
+import Header from "./UI/Header/Header.jsx";
 
 function App() {
+
+  let [opac, setopac] = useState(0.2);
+ 
+
+  let elem = document.getElementsByClassName("searchOpac")
+
+  function Show (event){
+    if(event.target.localName !== "input"){
+      elem[0].style.opacity = 0.2;
+      setopac(0.2)
+    }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div onClick={(e)=>Show(e)} className="App" style={appStyles} >
+      <Mainbackground />
+      <Header opac={opac} setopac={setopac} />
     </div>
   );
 }
